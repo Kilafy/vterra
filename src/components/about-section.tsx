@@ -1,10 +1,8 @@
 import Image from "next/image";
+import { useLanguage } from "@/components/language-context";
 
-interface AboutSectionProps {
-  language: "en" | "es";
-}
-
-export default function AboutSection({ language }: AboutSectionProps) {
+export default function AboutSection() {
+  const { language } = useLanguage();
   const content = {
     en: {
       title: "About Us",
@@ -28,13 +26,10 @@ export default function AboutSection({ language }: AboutSectionProps) {
       missionText:
         "Proporcionamos soluciones integrales que conectan mercados, culturas y oportunidades, permitiendo que nuestros clientes prosperen en una economía globalizada.",
     },
-  };
+  } as const;
 
   return (
-    <section
-      id="about"
-      className="py-20 scroll-mt-16" /* brand bg inherited from body */
-    >
+    <section id="about" className="py-20 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -82,3 +77,4 @@ export default function AboutSection({ language }: AboutSectionProps) {
     </section>
   );
 }
+

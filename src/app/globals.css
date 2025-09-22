@@ -46,29 +46,47 @@
 
 :root {
   --radius: 0.625rem;
-  /* Brand colors */
-  --background: #e6e6e6;
-  --foreground: #000000;
+  
+  /* Rustic Boutique Elegance Color Palette */
+  
+  /* Base neutrals - warm, sophisticated */
+  --background: #FAF8F5; /* Warm off-white */
+  --foreground: #1A1A1A; /* Rich charcoal instead of pure black */
 
-  /* Keep cards/popovers white for contrast on light gray background */
-  --card: #ffffff;
-  --card-foreground: #000000;
-  --popover: #ffffff;
-  --popover-foreground: #000000;
+  /* Cards - clean white with subtle warmth */
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
 
-  /* Buttons that use "variant=default" will use primary */
-  --primary: #000000; /* Black */
-  --primary-foreground: #ffffff; /* White text on black */
-  --secondary: #f3f3f3;
-  --secondary-foreground: #000000;
-  --muted: #f3f3f3;
-  --muted-foreground: #3f3f3f;
-  --accent: #f3f3f3;
-  --accent-foreground: #000000;
+  /* Primary - sophisticated black with golden accent */
+  --primary: #1A1A1A; /* Rich charcoal */
+  --primary-foreground: #FAF8F5; /* Warm white text */
+  
+  /* Secondary - warm beige tones */
+  --secondary: #F0E8DC; /* Warm beige */
+  --secondary-foreground: #1A1A1A;
+  
+  /* Muted - earthy undertones */
+  --muted: #E8DDD0; /* Slightly darker warm beige */
+  --muted-foreground: #6B5E52; /* Warm brown-gray */
+  
+  /* Accent - terracotta/earth tones */
+  --accent: #D4B5A0; /* Soft terracotta */
+  --accent-foreground: #1A1A1A;
+  
+  /* Custom Vterra Brand Colors */
+  --vterra-gold: #D4A574; /* Warm gold accent */
+  --vterra-olive: #8B9A6B; /* Olive green from nature */
+  --vterra-terracotta: #C09577; /* Deeper terracotta */
+  --vterra-wood: #A0846B; /* Warm wood brown */
+  --vterra-stone: #B8AFA0; /* Natural stone gray */
+  --vterra-cream: #F5F2ED; /* Warm cream */
+  
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #dddddd;
-  --input: #dddddd;
-  --ring: #7a7a7a;
+  --border: #E5DED1;
+  --input: #E8DDD0;
+  --ring: #D4A574;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -125,4 +143,26 @@
   body {
     @apply bg-background text-foreground;
   }
+  html { scrollbar-gutter: stable; }
 }
+
+@layer utilities {
+  /* Custom Vterra Brand Colors */
+  .text-vterra-gold { color: var(--vterra-gold); }
+  .text-vterra-olive { color: var(--vterra-olive); }
+  .text-vterra-terracotta { color: var(--vterra-terracotta); }
+  .text-vterra-wood { color: var(--vterra-wood); }
+  .text-vterra-stone { color: var(--vterra-stone); }
+
+  .bg-vterra-gold { background-color: var(--vterra-gold); }
+  .bg-vterra-olive { background-color: var(--vterra-olive); }
+  .bg-vterra-terracotta { background-color: var(--vterra-terracotta); }
+  .bg-vterra-wood { background-color: var(--vterra-wood); }
+  .bg-vterra-stone { background-color: var(--vterra-stone); }
+  .bg-vterra-cream { background-color: var(--vterra-cream); }
+
+  .border-vterra-gold { border-color: var(--vterra-gold); }
+  .border-vterra-olive { border-color: var(--vterra-olive); }
+  .border-vterra-stone { border-color: var(--vterra-stone); }
+}
+

@@ -8,12 +8,10 @@ import {
   Twitter,
 } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/components/language-context";
 
-interface FooterProps {
-  language: "en" | "es";
-}
-
-export default function Footer({ language }: FooterProps) {
+export default function Footer() {
+  const { language } = useLanguage();
   const content = {
     en: {
       contact: "Contact Information",
@@ -34,7 +32,7 @@ export default function Footer({ language }: FooterProps) {
         "© 2025 Vterra Real Estate Solutions. Todos los derechos reservados.",
       tagline: "Soluciones inmobiliarias para un mundo en movimiento.",
     },
-  };
+  } as const;
 
   return (
     <footer id="contact" className="bg-[#E6E6E6] text-black py-16">
@@ -122,11 +120,10 @@ export default function Footer({ language }: FooterProps) {
 
         {/* Copyright */}
         <div className="border-t border-gray-300 mt-12 pt-8 text-center">
-          <p className="font-sans text-gray-700">
-            {content[language].copyright}
-          </p>
+          <p className="font-sans text-gray-700">{content[language].copyright}</p>
         </div>
       </div>
     </footer>
   );
 }
+

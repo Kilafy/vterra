@@ -2,12 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Download, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/components/language-context";
 
-interface CatalogSectionProps {
-  language: "en" | "es";
-}
-
-export default function CatalogSection({ language }: CatalogSectionProps) {
+export default function CatalogSection() {
+  const { language } = useLanguage();
   const content = {
     en: {
       title: "Service Catalog",
@@ -27,10 +25,9 @@ export default function CatalogSection({ language }: CatalogSectionProps) {
       downloadButton: "Descargar Catálogo de Servicios",
       viewOnline: "Ver en Línea",
     },
-  };
+  } as const;
 
   const handleDownload = () => {
-    // Placeholder for Google Drive link
     window.open(
       "https://drive.google.com/file/d/your-catalog-file-id/view",
       "_blank",
@@ -72,3 +69,4 @@ export default function CatalogSection({ language }: CatalogSectionProps) {
     </section>
   );
 }
+
