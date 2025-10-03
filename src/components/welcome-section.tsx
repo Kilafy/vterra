@@ -5,22 +5,20 @@ export default function WelcomeSection() {
   const { language } = useLanguage();
   const content = {
     en: {
-      overline: "ABOUT VTERRA",
-      title: "Welcome",
-      subtitle: "We deliver innovative and community-driven real estate solutions.",
-      body: "Specializing in creating intelligent ecosystems for cross-border business, Vterra Real Estate Solutions provides industry-tailored services that help partners grow and thrive. From initial market strategy to executing final details, our team of dedicated experts holds a shared passion for transforming how business gets done.",
-      body2: "Committed to deliberate innovation and crafting scalable solutions, each member of our integrated team is dedicated to providing clients with operational excellence and strategic clarity.",
-      highlight: "Rooted in the belief that every market has opportunity to unlock, Vterra strives to create partner-led experiences that resonate deeply with local dynamics and global vision alike.",
-      cta: "Learn More",
+      overline: "WHY WE'RE HERE",
+      title: "Why we exist",
+      subtitle: "Business is hard enough. Endless documents, deadlines, details.",
+      body: "That's not where your energy belongs.",
+      body2: "Our job is simple: serve your business so you can serve your clients. Because when you're free to focus on the meaningful work, everything changes.",
+      highlight: "We provide services to take care of your business. We support brands that are transforming the world.",
     },
     es: {
-      overline: "ACERCA DE VTERRA",
-      title: "Bienvenidos",
-      subtitle: "Entregamos soluciones inmobiliarias innovadoras e impulsadas por la comunidad.",
-      body: "Especializándose en crear ecosistemas inteligentes para negocios transfronterizos, Vterra Real Estate Solutions proporciona servicios adaptados a la industria que ayudan a los socios a crecer y prosperar. Desde la estrategia inicial del mercado hasta ejecutar los detalles finales, nuestro equipo de expertos dedicados mantiene una pasión compartida por transformar cómo se hacen los negocios.",
-      body2: "Comprometido con la innovación deliberada y la creación de soluciones escalables, cada miembro de nuestro equipo integrado se dedica a proporcionar a los clientes excelencia operacional y claridad estratégica.",
-      highlight: "Arraigado en la creencia de que cada mercado tiene oportunidades por desbloquear, Vterra se esfuerza por crear experiencias lideradas por socios que resuenan profundamente tanto con dinámicas locales como con visión global.",
-      cta: "Conoce Más",
+      overline: "POR QUÉ ESTAMOS AQUÍ",
+      title: "Por qué existimos",
+      subtitle: "Los negocios ya son suficientemente difíciles. Documentos infinitos, fechas límite, detalles.",
+      body: "Ahí no es donde pertenece tu energía.",
+      body2: "Nuestro trabajo es simple: servir a tu negocio para que puedas servir a tus clientes. Porque cuando eres libre de enfocarte en el trabajo significativo, todo cambia.",
+      highlight: "Proporcionamos servicios para cuidar tu negocio. Apoyamos marcas que están transformando el mundo.",
     },
   } as const;
 
@@ -45,6 +43,17 @@ export default function WelcomeSection() {
             <p className="font-sans text-xl md:text-2xl text-vterra-wood leading-relaxed font-medium">
               {content[language].subtitle}
             </p>
+
+            {/* Left Side Text Content */}
+            <div className="space-y-6 pt-8">
+              <p className="font-sans text-base md:text-lg text-gray-700 leading-relaxed">
+                {content[language].body}
+              </p>
+              
+              <p className="font-sans text-base md:text-lg text-gray-700 leading-relaxed">
+                {content[language].body2}
+              </p>
+            </div>
           </div>
 
           {/* Right Content */}
@@ -53,78 +62,40 @@ export default function WelcomeSection() {
             {/* Main Image */}
             <div className="relative h-64 lg:h-80 overflow-hidden">
               <img 
-                src="/images/luxury-beachfront-penthouse.png" 
+                src="/images/real-state/photo-04-vertical.jpg" 
                 alt="Elegant hospitality space" 
                 className="w-full h-full object-cover rounded-bl-[80px] rounded-tr-[80px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-vterra-wood/10 to-transparent rounded-bl-[80px] rounded-tr-[80px]" />
-            </div>
-
-            {/* Text Content */}
-            <div className="space-y-6">
-              <p className="font-sans text-base md:text-lg text-gray-700 leading-relaxed">
-                {content[language].body}
-              </p>
+              <div className="absolute inset-0 bg-gradient-to-br from-vterra-wood/20 to-transparent rounded-bl-[80px] rounded-tr-[80px]" />
               
-              <p className="font-sans text-base md:text-lg text-gray-700 leading-relaxed">
-                {content[language].body2}
-              </p>
+              {/* Decorative Elements on Image */}
+              <div className="absolute top-4 right-4 w-2 h-16 bg-vterra-gold/60"></div>
+              <div className="absolute bottom-4 left-4 w-16 h-2 bg-vterra-wood/60"></div>
+            </div>
 
-              {/* Highlight Quote */}
-              <div className="border-l-3 border-vterra-gold pl-6 py-4 bg-white/50">
-                <p className="font-serif text-lg md:text-xl text-gray-800 leading-relaxed italic">
-                  {content[language].highlight}
+            {/* Highlight Quote - Now Balanced on Right */}
+            <div className="relative">
+              <div className="border-l-4 border-vterra-gold pl-8 py-6 bg-gradient-to-r from-white/80 to-vterra-stone/10 rounded-r-lg">
+                <div className="absolute left-0 top-0 w-1 h-full bg-vterra-gold rounded-r"></div>
+                <p className="font-serif text-lg md:text-xl text-gray-800 leading-relaxed italic mb-3">
+                  "{content[language].highlight}"
                 </p>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-px bg-vterra-gold"></div>
+                  <span className="text-vterra-wood font-medium text-sm uppercase tracking-wide">
+                    Vterra Mission
+                  </span>
+                </div>
               </div>
-
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-medium px-8 py-4 transition-colors duration-300"
-              >
-                {content[language].cta}
-              </Button>
+              
+              {/* Floating Decorative Element */}
+              <div className="absolute -right-4 -top-4 w-8 h-8 bg-vterra-terracotta/20 rounded-full blur-sm"></div>
             </div>
 
           </div>
         </div>
 
-        {/* Bottom Visual Elements */}
-        <div className="mt-20 lg:mt-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Image 1 */}
-            <div className="relative h-48 overflow-hidden rounded-tr-[60px]">
-              <img 
-                src="/images/family-house-garden-patio.png" 
-                alt="Property detail" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-vterra-olive/20" />
-            </div>
 
-            {/* Image 2 */}
-            <div className="relative h-48 overflow-hidden">
-              <img 
-                src="/images/modern-glass-office.png" 
-                alt="Modern office space" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-vterra-terracotta/20" />
-            </div>
-
-            {/* Image 3 */}
-            <div className="relative h-48 overflow-hidden rounded-bl-[60px]">
-              <img 
-                src="/images/placeholder-f1zat.png" 
-                alt="Strategic consulting" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-vterra-wood/20" />
-            </div>
-
-          </div>
-        </div>
 
         {/* Decorative Elements */}
         <div className="absolute top-32 right-8 w-2 h-16 bg-vterra-gold/40 hidden xl:block"></div>

@@ -88,8 +88,8 @@ export default function Navbar() {
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center space-x-2 text-gray-700 hover:text-vterra-wood hover:bg-vterra-cream/50 transition-all duration-300 px-4 py-2 rounded-full">
-              <Globe className="h-4 w-4" />
+              className="group flex items-center space-x-2 text-gray-700 hover:text-vterra-wood hover:bg-vterra-cream/80 hover:scale-105 transition-all duration-300 px-4 py-2 rounded-full border border-transparent hover:border-vterra-gold/30">
+              <Globe className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
               <span className="text-sm font-medium tracking-wider">
                 {language.toUpperCase()}
               </span>
