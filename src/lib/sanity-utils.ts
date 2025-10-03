@@ -47,7 +47,7 @@ export function buildSanityImageUrl(
   }
 
   const assetId = image.asset._ref;
-  let url = `https://cdn.sanity.io/images/${projectId}/${dataset}/${assetId}`;
+  const url = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${assetId}`;
 
   const params = new URLSearchParams();
   if (width) params.append('w', width.toString());
@@ -75,7 +75,7 @@ export function getSanityImageAlt(
  */
 export function buildLocalizedQuery(
   baseQuery: string,
-  locale: 'en' | 'es' = 'en'
+  _locale: 'en' | 'es' = 'en'
 ): string {
   // This can be extended based on how you structure localization in Sanity
   return `${baseQuery}`;

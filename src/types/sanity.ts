@@ -2,7 +2,7 @@
 // These interfaces define the structure of data that will be managed through Sanity CMS
 
 // Base interface for Sanity documents
-interface SanityDocument {
+export interface SanityDocument {
   _id: string;
   _type: string;
   _createdAt: string;
@@ -11,7 +11,7 @@ interface SanityDocument {
 }
 
 // Image asset structure from Sanity
-interface SanityImage {
+export interface SanityImage {
   _type: 'image';
   asset: {
     _ref: string;
@@ -31,7 +31,7 @@ interface SanityImage {
 }
 
 // Localized string for multi-language support
-interface LocalizedString {
+export interface LocalizedString {
   en: string;
   es: string;
 }

@@ -6,10 +6,6 @@ import {
   Hotel,
   Palette,
   TrendingUp,
-  FileCheck,
-  Users,
-  Globe,
-  BarChart3,
 } from "lucide-react";
 import { useLanguage } from "@/components/language-context";
 
@@ -137,10 +133,11 @@ export default function ServicesSection() {
               className="group pb-0 overflow-hidden bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-500 rounded-none"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <Image
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
 

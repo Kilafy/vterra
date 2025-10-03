@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, DollarSign, Home, ArrowRight, Car, Bath, Bed } from "lucide-react";
+import { MapPin, Home, ArrowRight, Car, Bath, Bed } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/language-context";

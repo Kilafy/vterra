@@ -2,7 +2,6 @@
 
 import {
   Mail,
-  Phone,
   MapPin,
   MessageCircle,
   Instagram,

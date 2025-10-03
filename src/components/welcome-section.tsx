@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/language-context";
+import Image from "next/image";
 
 export default function WelcomeSection() {
   const { language } = useLanguage();
@@ -61,10 +61,11 @@ export default function WelcomeSection() {
             
             {/* Main Image */}
             <div className="relative h-64 lg:h-80 overflow-hidden">
-              <img 
+              <Image 
                 src="/images/real-state/photo-04-vertical.jpg" 
                 alt="Elegant hospitality space" 
-                className="w-full h-full object-cover rounded-bl-[80px] rounded-tr-[80px]"
+                fill
+                className="object-cover rounded-bl-[80px] rounded-tr-[80px]"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-vterra-wood/20 to-transparent rounded-bl-[80px] rounded-tr-[80px]" />
               
@@ -78,7 +79,7 @@ export default function WelcomeSection() {
               <div className="border-l-4 border-vterra-gold pl-8 py-6 bg-gradient-to-r from-white/80 to-vterra-stone/10 rounded-r-lg">
                 <div className="absolute left-0 top-0 w-1 h-full bg-vterra-gold rounded-r"></div>
                 <p className="font-serif text-lg md:text-xl text-gray-800 leading-relaxed italic mb-3">
-                  "{content[language].highlight}"
+                  &ldquo;{content[language].highlight}&rdquo;
                 </p>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-px bg-vterra-gold"></div>
