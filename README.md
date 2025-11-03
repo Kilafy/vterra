@@ -42,6 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete guide for deploying to Vercel and other platforms
 - **[Security Configuration](docs/SECURITY.md)** - Security best practices and Sanity setup
+- **[Studio Guide](docs/STUDIO-GUIDE.md)** - Complete guide for managing content in Sanity Studio
 - **[Sanity Setup](docs/sanity-setup.md)** - CMS configuration and content management
 - **[Design System](docs/README-design-system.md)** - UI components and styling guidelines
 
@@ -142,14 +143,31 @@ See [Security Configuration](docs/SECURITY.md) for details.
 
 ## 📝 Content Management
 
-Access Sanity Studio at `/studio` to manage:
+### Sanity Studio Access
 
-- Properties (title, description, price, location, etc.)
-- Property images and galleries
-- Property types and features
-- Bilingual content (EN/ES)
+Your Studio is available at **two locations**:
 
-Default credentials configured in Sanity dashboard.
+1. **Dedicated Studio**: https://vterra.sanity.studio/
+2. **Integrated Studio**: `https://your-domain.vercel.app/studio`
+
+### Managing Content
+
+You can manage:
+- ✏️ Properties (title, description, price, location, etc.)
+- 🖼️ Property images and galleries
+- 🏷️ Property types and features
+- 🌐 Bilingual content (EN/ES)
+- ⭐ Featured properties
+
+**See [Studio Guide](docs/STUDIO-GUIDE.md) for detailed instructions.**
+
+### Deploying Studio Updates
+
+```bash
+npm run studio:deploy
+```
+
+This updates the hosted Studio at: https://vterra.sanity.studio/
 
 ## 🧪 Development
 
