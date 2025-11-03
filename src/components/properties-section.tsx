@@ -6,10 +6,15 @@ import { MapPin, Home, ArrowRight, Car, Bath, Bed } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/language-context";
-import { properties } from "@/data/properties";
 import { useEffect, useRef } from "react";
+import type { Property } from "@/types/sanity";
+import { getImageUrl } from "@/sanity/image";
 
-export default function PropertiesSection() {
+interface PropertiesSectionProps {
+  featuredProperties: Property[];
+}
+
+export default function PropertiesSection({ featuredProperties }: PropertiesSectionProps) {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -57,8 +62,6 @@ export default function PropertiesSection() {
       viewDetails: "Ver Detalles"
     },
   } as const;
-
-  const featured = properties.filter((p) => p.featured).slice(0, 3);
 
   return (
     <section 
@@ -124,86 +127,94 @@ export default function PropertiesSection() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {featured.map((property, index) => (
-              <div 
-                key={property.id} 
-                className="animate-on-scroll group"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <Link href={`/properties/${property.slug}`}>
-                  <Card className="h-full pt-0 overflow-hidden hover:shadow-2xl transition-all duration-700 flex flex-col bg-white border-vterra-stone/20 group-hover:border-vterra-gold/40 group-hover:transform group-hover:scale-[1.02] rounded-xl">
-                    <div className="relative h-72 overflow-hidden rounded-t-xl">
-                      <Image 
-                        src={property.image} 
-                        alt={language === "en" ? property.title : property.titleEs} 
-                        fill 
-                        className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                      />
-                      
-                      {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                      
-                      {/* Exclusive Badge */}
-                      <div className="absolute top-4 right-4 bg-vterra-gold backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
-                        {content[language].exclusiveTag}
-                      </div>
-                      
-                      {/* Price Overlay */}
-                      <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-xl shadow-lg border border-white/20">
-                        <div className="font-serif font-bold text-gray-900 text-lg">
-                          {property.priceFormatted}
-                        </div>
-                      </div>
-                    </div>
-
-                    <CardHeader className="pb-3">
-                      <CardTitle className="font-serif text-xl font-bold text-gray-900 group-hover:text-vterra-olive transition-colors duration-300">
-                        {language === "en" ? property.title : property.titleEs}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="flex-1 pt-0">
-                      <div className="space-y-3 mb-6">
-                        <div className="flex items-center text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                          <MapPin className="h-4 w-4 mr-3 text-vterra-terracotta" />
-                          <span className="text-sm font-medium">{property.location}</span>
+            {featuredProperties.map((property, index) => {
+              const imageUrl = getImageUrl(property.images?.[0], 800, 600);
+              
+              return (
+                <div 
+                  key={property._id} 
+                  className="animate-on-scroll group"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <Link href={`/properties/${property.slug.current}`}>
+                    <Card className="h-full pt-0 overflow-hidden hover:shadow-2xl transition-all duration-700 flex flex-col bg-white border-vterra-stone/20 group-hover:border-vterra-gold/40 group-hover:transform group-hover:scale-[1.02] rounded-xl">
+                      <div className="relative h-72 overflow-hidden rounded-t-xl">
+                        <Image 
+                          src={imageUrl} 
+                          alt={language === "en" ? property.title_en : property.title_es} 
+                          fill 
+                          className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                        />
+                        
+                        {/* Overlay Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        
+                        {/* Exclusive Badge */}
+                        <div className="absolute top-4 right-4 bg-vterra-gold backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+                          {content[language].exclusiveTag}
                         </div>
                         
-                        <div className="flex items-center text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                          <Home className="h-4 w-4 mr-3 text-vterra-olive" />
-                          <span className="text-sm font-medium">{language === "en" ? property.type : property.typeEs}</span>
-                        </div>
-                        
-                        <div className="flex items-center justify-between pt-2">
-                          <div className="flex items-center space-x-4 text-gray-500">
-                            <div className="flex items-center">
-                              <Bed className="h-4 w-4 mr-1" />
-                              <span className="text-xs">3</span>
-                            </div>
-                            <div className="flex items-center">
-                              <Bath className="h-4 w-4 mr-1" />
-                              <span className="text-xs">2</span>
-                            </div>
-                            <div className="flex items-center">
-                              <Car className="h-4 w-4 mr-1" />
-                              <span className="text-xs">{property.parking ? "2" : "0"}</span>
-                            </div>
+                        {/* Price Overlay */}
+                        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-xl shadow-lg border border-white/20">
+                          <div className="font-serif font-bold text-gray-900 text-lg">
+                            ${property.price.toLocaleString()}
                           </div>
                         </div>
                       </div>
 
-                      {/* View Details Button */}
-                      <div className="pt-4 border-t border-gray-100">
-                        <div className="flex items-center justify-between text-vterra-olive group-hover:text-vterra-gold transition-colors duration-300">
-                          <span className="font-medium text-sm">{content[language].viewDetails}</span>
-                          <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                      <CardHeader className="pb-3">
+                        <CardTitle className="font-serif text-xl font-bold text-gray-900 group-hover:text-vterra-olive transition-colors duration-300">
+                          {language === "en" ? property.title_en : property.title_es}
+                        </CardTitle>
+                      </CardHeader>
+
+                      <CardContent className="flex-1 pt-0">
+                        <div className="space-y-3 mb-6">
+                          <div className="flex items-center text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                            <MapPin className="h-4 w-4 mr-3 text-vterra-terracotta" />
+                            <span className="text-sm font-medium">{property.location.city}, {property.location.country}</span>
+                          </div>
+                          
+                          <div className="flex items-center text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                            <Home className="h-4 w-4 mr-3 text-vterra-olive" />
+                            <span className="text-sm font-medium capitalize">{property.type}</span>
+                          </div>
+                          
+                          {property.bedrooms > 0 && (
+                            <div className="flex items-center justify-between pt-2">
+                              <div className="flex items-center space-x-4 text-gray-500">
+                                <div className="flex items-center">
+                                  <Bed className="h-4 w-4 mr-1" />
+                                  <span className="text-xs">{property.bedrooms}</span>
+                                </div>
+                                <div className="flex items-center">
+                                  <Bath className="h-4 w-4 mr-1" />
+                                  <span className="text-xs">{property.bathrooms}</span>
+                                </div>
+                                {property.parking && (
+                                  <div className="flex items-center">
+                                    <Car className="h-4 w-4 mr-1" />
+                                    <span className="text-xs">{property.parking}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            ))}
+
+                        {/* View Details Button */}
+                        <div className="pt-4 border-t border-gray-100">
+                          <div className="flex items-center justify-between text-vterra-olive group-hover:text-vterra-gold transition-colors duration-300">
+                            <span className="font-medium text-sm">{content[language].viewDetails}</span>
+                            <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,25 +1,18 @@
-"use client";
+import HomeClient from "@/components/home-client";
+import { client } from "@/sanity/client";
+import { FEATURED_PROPERTIES_QUERY } from "@/sanity/queries";
+import type { Property } from "@/types/sanity";
 
-import Navbar from "@/components/navbar";
-import HeroSection from "@/components/hero-section";
-import WelcomeSection from "@/components/welcome-section";
-import ServicesSection from "@/components/services-section";
-import ExperienceSection from "@/components/experience-new";
-import PropertiesSection from "@/components/properties-section";
-import ContactCtaSection from "@/components/contact-cta-updated";
-import Footer from "@/components/footer-new";
+// Enable ISR - revalidate every 60 seconds
+export const revalidate = 60;
 
-export default function HomePage() {
-  return (
-    <main className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <HeroSection />
-      <WelcomeSection />
-      <ServicesSection />
-      <ExperienceSection />
-      <PropertiesSection />
-      <ContactCtaSection />
-      <Footer />
-    </main>
+export default async function HomePage() {
+  // Fetch featured properties from Sanity
+  const featuredProperties = await client.fetch<Property[]>(
+    FEATURED_PROPERTIES_QUERY,
+    {},
+    { next: { revalidate: 60 } }
   );
+
+  return <HomeClient featuredProperties={featuredProperties} />;
 }

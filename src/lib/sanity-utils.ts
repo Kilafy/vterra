@@ -75,9 +75,11 @@ export function getSanityImageAlt(
  */
 export function buildLocalizedQuery(
   baseQuery: string,
-  _locale: 'en' | 'es' = 'en'
+  locale: 'en' | 'es' = 'en'
 ): string {
   // This can be extended based on how you structure localization in Sanity
+  // For now, we return the base query since our schema has separate _en/_es fields
+  console.log(`Building query for locale: ${locale}`);
   return `${baseQuery}`;
 }
 

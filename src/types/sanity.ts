@@ -93,28 +93,41 @@ export interface WelcomeContent extends SanityDocument {
   galleryImages: SanityImage[];
 }
 
-// Property listing
+// Property - Main Real Estate Listing Type
 export interface Property extends SanityDocument {
   _type: 'property';
-  title: LocalizedString;
-  description: LocalizedString;
-  price?: number;
-  currency?: string;
-  location: {
-    city: LocalizedString;
-    country: LocalizedString;
-    coordinates?: {
-      lat: number;
-      lng: number;
-    };
-  };
-  propertyType: 'residential' | 'commercial' | 'hospitality' | 'mixed-use';
-  images: SanityImage[];
-  features: LocalizedString[];
-  isActive: boolean;
-  isFeatured: boolean;
+  title_en: string;
+  title_es: string;
   slug: {
     current: string;
+  };
+  type: 'condominium' | 'villa' | 'house' | 'penthouse' | 'apartment' | 'commercial';
+  status: 'for-sale' | 'for-rent' | 'sold';
+  price: number;
+  location: {
+    city: string;
+    state?: string;
+    country: string;
+    address?: string;
+  };
+  bedrooms: number;
+  bathrooms: number;
+  area: number;
+  parking?: number;
+  images: (SanityImage & {
+    caption_en?: string;
+    caption_es?: string;
+  })[];
+  description_en: unknown[]; // Portable Text blocks
+  description_es: unknown[]; // Portable Text blocks
+  amenities?: string[];
+  featured: boolean;
+  priority?: number;
+  seo?: {
+    metaTitle_en?: string;
+    metaTitle_es?: string;
+    metaDescription_en?: string;
+    metaDescription_es?: string;
   };
 }
 
