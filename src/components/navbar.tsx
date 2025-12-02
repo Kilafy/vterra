@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/components/language-context";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { language, toggleLanguage } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
@@ -22,6 +23,13 @@ export default function Navbar() {
   };
 
   const handleNavClick = (item: { label: string; id: string }) => {
+    // Special case for Properties page - navigate to route instead of scroll
+    if (item.id === "properties") {
+      router.push("/properties");
+      setIsOpen(false);
+      return;
+    }
+
     if (pathname === "/") {
       // Si estamos en home, hacer scroll
       scrollToSection(item.id);
